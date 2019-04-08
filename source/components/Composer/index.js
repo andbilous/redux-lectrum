@@ -15,6 +15,7 @@ export default class Composer extends Component {
     };
 
     _createPost = ({ comment }) => {
+        console.log(this.props);
         if (!comment) {
             return null;
         }
