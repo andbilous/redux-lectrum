@@ -19,7 +19,7 @@ export default class Composer extends Component {
         if (!comment) {
             return null;
         }
-        this.props.actions.createPostAsync(comment);
+        this.props.actions.createPost(comment);
     };
 
     _submitFormOnEnter = (event) => {

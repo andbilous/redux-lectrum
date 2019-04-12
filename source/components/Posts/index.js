@@ -13,7 +13,7 @@ import { mockedProfile } from '../../instruments/mockedData';
 import { Composer, Catcher, Post } from '../../components';
 // Actions
 
-import { fetchPostsAsync, createPostAsync } from '../../bus/posts/actions';
+import { fetchPostsAsync, createPost } from '../../bus/posts/actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -22,7 +22,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        actions: bindActionCreators({ fetchPostsAsync, createPostAsync }, dispatch),
+        actions: bindActionCreators({ fetchPostsAsync, createPost }, dispatch),
     };
 };
 
@@ -41,7 +41,7 @@ export default class Posts extends Component {
             // Posts
             fetchPostsAsync: () => {},
             removePostAsync: () => {},
-            createPostAsync: () => {},
+            createPost:      () => {},
             likePostAsync:   () => {},
             unlikePostAsync: () => {},
         },
@@ -57,6 +57,9 @@ export default class Posts extends Component {
         const { actions, posts, profile } = this.props;
 
         const postsJSX = posts.map((post) => {
+
+            console.log(post);
+
             return (
                 <Catcher key = { post.get('id') }>
                     <Post

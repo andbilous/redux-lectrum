@@ -1,4 +1,4 @@
-import { FETCH_POSTS_ASYNC, FILL_POSTS, CREATE_POST_ASYNC } from './types';
+import { FETCH_POSTS_ASYNC, FILL_POSTS, CREATE_POST } from './types';
 
 import { api } from '../../REST';
 
