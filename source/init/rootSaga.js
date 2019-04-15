@@ -1,7 +1,8 @@
-import { all, call } from 'redux-saga/effects';
+// import { all, call } from 'redux-saga/effects';
 
-import { watchPosts } from '../bus/posts/saga/watchers';
+// import { watchPosts } from '../bus/posts/saga/watchers';
 
 export function* rootSaga () {
-    yield all([call(watchPosts)]);
+    // yield all([call(watchPosts)]);
+    yield console.log('=> init saga');
 }

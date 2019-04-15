@@ -10,14 +10,14 @@ export const api ={
                 },
             });
         },
-        createPost () {
+        createPost (post) {
             return fetch(`${MAIN_URL}/feed`, {
                 method:  'POST',
                 headers: {
                     'x-no-auth':    groupId,
                     'Content-Type': 'aplication/json/',
                 },
-                body: JSON.stringify({ token }),
+                body: JSON.stringify({ post }),
             });
         },
     },
