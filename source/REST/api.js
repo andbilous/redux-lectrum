@@ -10,14 +10,16 @@ export const api ={
                 },
             });
         },
-        createPostAsync (post) {
+        createPostAsync (comment) {
+            console.log(comment);
+
             return fetch(`${MAIN_URL}/feed`, {
                 method:  'POST',
                 headers: {
                     'x-no-auth':    groupId,
-                    'Content-Type': 'aplication/json/',
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ post }),
+                body: JSON.stringify({ comment }),
             });
         },
     },

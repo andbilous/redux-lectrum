@@ -22,7 +22,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        actions: bindActionCreators({ fetchPostsAsync, createPost, createPostAsync }, dispatch),
+        actions: bindActionCreators({ fetchPostsAsync, createPostAsync }, dispatch),
     };
 };
 
@@ -41,7 +41,7 @@ export default class Posts extends Component {
             // Posts
             fetchPostsAsync: () => {},
             removePostAsync: () => {},
-            createPost:      () => {},
+            createPostAsync: () => {},
             likePostAsync:   () => {},
             unlikePostAsync: () => {},
         },
@@ -57,8 +57,7 @@ export default class Posts extends Component {
         const { actions, posts, profile } = this.props;
 
         const postsJSX = posts.map((post) => {
-            console.log(post);
-            console.log(typeof post);
+            console.log(posts);
 
             return (
                 <Catcher key = { post.get('id') }>
