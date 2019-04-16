@@ -34,8 +34,6 @@ export default class Composer extends Component {
     render () {
         const { profile } = this.props;
 
-        console.log(this.props);
-
         return (
             <Formik
                 initialValues = { composer.shape }
