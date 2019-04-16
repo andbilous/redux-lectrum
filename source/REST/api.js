@@ -10,7 +10,7 @@ export const api ={
                 },
             });
         },
-        createPost (post) {
+        createPostAsync (post) {
             return fetch(`${MAIN_URL}/feed`, {
                 method:  'POST',
                 headers: {
