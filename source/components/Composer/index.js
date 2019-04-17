@@ -15,10 +15,11 @@ export default class Composer extends Component {
     };
 
     _createPost = ({ comment }) => {
-        console.log(this.props);
+
         if (!comment) {
             return null;
         }
+        console.log(comment);
         this.props.actions.createPostAsync(comment);
     };
 
@@ -32,8 +33,6 @@ export default class Composer extends Component {
 
     render () {
         const { profile } = this.props;
-
-        console.log(this.props);
 
         return (
             <Formik
