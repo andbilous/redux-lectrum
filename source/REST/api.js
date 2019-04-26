@@ -11,7 +11,6 @@ export const api ={
             });
         },
         createPostAsync (comment) {
-            console.log(comment);
 
             return fetch(`${MAIN_URL}/feed`, {
                 method:  'POST',

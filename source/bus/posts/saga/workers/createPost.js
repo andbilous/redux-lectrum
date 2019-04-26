@@ -13,7 +13,7 @@ export function* createPost ({ payload: comment }) {
         if (response.status !==200) {
             throw new Error(message);
         }
-        yield put(postsActions.createPostAsync(post));
+        yield put(postsActions.createPost(post));
         yield put(uiActions.stopFetching());
     } catch (error) {
         yield put(uiActions.emitError(error));
