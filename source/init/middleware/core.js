@@ -1,6 +1,5 @@
 import { applyMiddleware, compose } from 'redux';
 import { createLogger } from 'redux-logger';
-import thunk from 'redux-thunk';
 import { customThunk } from './custom';
 import createSagaMiddleware from 'redux-saga';
 

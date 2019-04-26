@@ -4,17 +4,15 @@ import { api } from '../../../../REST';
 import { postsActions } from '../../actions';
 import { uiActions } from '../../../ui/actions';
 
-export function* createPost ({ payload: comment }) {
+export function* fetchPosts ({ payload: comment }) {
     try {
-        yield put(uiActions.startFetching());
-        const response = yield apply(api, api.posts.create, [comment]);
+        const response = yield apply(api, api.posts.fetch, [comment]);
         const { data: post, message } = yield apply(response, response.json);
 
         if (response.status !==200) {
             throw new Error(message);
         }
-        yield put(postsActions.createPostAC(post));
-        yield put(uiActions.stopFetching());
+        yield put(postsActions.fetchPostsAsync());
     } catch (error) {
         yield put(uiActions.emitError(error));
     } finally {

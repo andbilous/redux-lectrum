@@ -1,4 +1,7 @@
-export const FILL_POSTS = 'FILL_POSTS';
-export const FETCH_POSTS_ASYNC = 'FETCH_POSTS_ASYNC';
-export const CREATE_POST='CREATE_POST';
-export const CREATE_POST_ASYNC='CREATE_POST_ASYNC';
+
+export const types={
+    FILL_POSTS:        'FILL_POSTS',
+    CREATE_POST:       'CREATE_POST',
+    FETCH_POSTS_ASYNC: 'FETCH_POSTS_ASYNC',
+    CREATE_POST_ASYNC: 'CREATE_POST_ASYNC',
+};
