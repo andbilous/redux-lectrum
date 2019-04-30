@@ -1,17 +1,91 @@
 // Core
-import React, { Component } from 'react';
-import { hot } from 'react-hot-loader';
+import React, {
+    Component
+} from 'react';
+import {
+    connect
+} from 'react-redux';
+import {
+    hot
+} from 'react-hot-loader';
+import {
+    Switch,
+    Route,
+    Redirect,
+    withRouter
+} from 'react-router-dom';
 
 // Pages
-import { Feed } from '../pages';
+import {
+    Login,
+    Feed,
+    Signup,
+    Profile,
+    NewPassword
+} from '../pages';
+
+import {
+    book
+} from './book';
 
 @hot(module)
+@withRouter
+@connect()
 export default class App extends Component {
     render () {
-        return (
-            <>
-                <Feed />
-            </>
+        const {
+            isAuthenticated,
+        } = this.props;
+
+        return isAuthenticated ? (<Switch >
+            <Route
+                component = {
+                    Feed
+                }
+                path = {
+                    book.feed
+                }
+            /> <Route
+                component = {
+                    Profile
+                }
+                path = {
+                    book.profile
+                }
+            /> <Route
+                component = {
+                    NewPassword
+                }
+                path = {
+                    book.newPassword
+                }
+            /> <Redirect
+                to = {
+                    book.feed
+                }
+            /> </Switch>
+
+        ) : (<Switch >
+            <Route
+                component = {
+                    Login
+                }
+                path = {
+                    book.login
+                }
+            /> <Route
+                component = {
+                    Signup
+                }
+                path = {
+                    book.signUp
+                }
+            /> <Redirect
+                to = {
+                    book.login
+                }
+            /> </Switch>
         );
+
     }
 }

@@ -1,6 +1,31 @@
-import { MAIN_URL, groupId } from './config';
+import {
+    MAIN_URL,
+    groupId
+} from './config';
 
-export const api ={
+export const api = {
+    auth: {
+        signup (userInfo) {
+            return fetch(`${MAIN_URL}/user/${groupId}`, {
+                method:  'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userInfo),
+            });
+        },
+        login (creds) {
+            return fetch(`${MAIN_URL}/user/login`, {
+                method:  'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(
+                    creds,
+                ),
+            });
+        },
+    },
     posts: {
         fetch () {
             return fetch(`${MAIN_URL}/feed`, {
@@ -18,9 +43,10 @@ export const api ={
                     'x-no-auth':    groupId,
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ comment }),
+                body: JSON.stringify({
+                    comment,
+                }),
             });
         },
     },
-}
-;
+};
