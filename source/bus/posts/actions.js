@@ -36,16 +36,14 @@ export const postsActions ={
         dispatch(postsActions.fillPosts(result.data));
     },
 
-    createPostAsync: (post) => async (dispatch) => {
-        console.log(post);
+    createPostAsync: (comment) => async (dispatch) => {
         dispatch({
             type:    types.CREATE_POST_ASYNC,
-            payload: post,
+            payload: comment,
         });
-        const response = await api.posts.createPostAsync(post);
+        const response = await api.posts.createPostAsync({ comment });
         const result = await response.json();
 
-        console.log(result);
         dispatch(postsActions.fillPosts(result.data));
     },
 };

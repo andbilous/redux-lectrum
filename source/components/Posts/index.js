@@ -41,7 +41,6 @@ export default class Posts extends Component {
     render () {
         const { actions, posts, profile } = this.props;
 
-        console.log(posts);
         const postsJSX = posts.map((post) => {
 
             return (
