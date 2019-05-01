@@ -31,6 +31,7 @@ const mapDispatchToProps = {
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
+
 export default class LoginForm extends Component {
 
     _submitLoginForm = (credentials) => {
@@ -111,13 +112,13 @@ export default class LoginForm extends Component {
                                         type = 'checkbox'
                                     />
                         Запомнить меня </label> <button
-                            className = {
+                                    className = {
                                         buttonStyle
                                     }
-                                    disabled = {
+                            disabled = {
                                         isFetching
                                     }
-                                    type = 'submit' > {
+                            type = 'submit' > {
                                         buttonMessage
                                     } </button> </div> </div> </Form>
                     );

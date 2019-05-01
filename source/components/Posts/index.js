@@ -21,7 +21,10 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
     return {
-        actions: bindActionCreators({ fetchPostsAsync: postsActions.fetchPostsAsync, createPostAsync: postsActions.createPostAsync }, dispatch),
+        actions: bindActionCreators({
+            fetchPostsAsync: postsActions.fetchPostsAsync,
+            createPostAsync: postsActions.createPostAsync,
+            removePostAsync: postsActions.removePostAsync }, dispatch),
     };
 };
 
@@ -38,7 +41,9 @@ export default class Posts extends Component {
     render () {
         const { actions, posts, profile } = this.props;
 
+        console.log(posts);
         const postsJSX = posts.map((post) => {
+
             return (
                 <Catcher key = { post.get('id') }>
                     <Post

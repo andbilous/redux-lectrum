@@ -1,91 +1,43 @@
 // Core
-import React, {
-    Component
-} from 'react';
-import {
-    connect
-} from 'react-redux';
-import {
-    hot
-} from 'react-hot-loader';
-import {
-    Switch,
-    Route,
-    Redirect,
-    withRouter
-} from 'react-router-dom';
+import React, { Component } from 'react';
+import { hot } from 'react-hot-loader';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-// Pages
-import {
-    Login,
-    Feed,
-    Signup,
-    Profile,
-    NewPassword
-} from '../pages';
+import Private from './Private';
+import Public from './Public';
 
-import {
-    book
-} from './book';
+import { Loading } from '../components';
+
+import { authActions } from '../bus/auth/actions';
+
+const mapStateToProps=(state) => {
+    return {
+        isAuthenticated: state.auth.get('isAuthenticated'),
+        isInitialized:   state.auth.get('isInitialized'),
+    };
+};
+const mapDispatchToProps={
+    initializeAsync: authActions.initializeAsync,
+};
 
 @hot(module)
 @withRouter
-@connect()
+@connect(mapStateToProps, mapDispatchToProps)
+
 export default class App extends Component {
+    componentDidMount () {
+        this.props.initializeAsync();
+    }
     render () {
-        const {
-            isAuthenticated,
-        } = this.props;
+        const { isAuthenticated, isInitialized } = this.props;
 
-        return isAuthenticated ? (<Switch >
-            <Route
-                component = {
-                    Feed
-                }
-                path = {
-                    book.feed
-                }
-            /> <Route
-                component = {
-                    Profile
-                }
-                path = {
-                    book.profile
-                }
-            /> <Route
-                component = {
-                    NewPassword
-                }
-                path = {
-                    book.newPassword
-                }
-            /> <Redirect
-                to = {
-                    book.feed
-                }
-            /> </Switch>
+        if (!isInitialized) {
+            return <Loading />;
+        }
 
-        ) : (<Switch >
-            <Route
-                component = {
-                    Login
-                }
-                path = {
-                    book.login
-                }
-            /> <Route
-                component = {
-                    Signup
-                }
-                path = {
-                    book.signUp
-                }
-            /> <Redirect
-                to = {
-                    book.login
-                }
-            /> </Switch>
-        );
+        return isAuthenticated ?
+            <Private /> : <Public />;
 
     }
 }

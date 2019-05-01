@@ -15,6 +15,17 @@ export const postsActions ={
             payload: post,
         };
     },
+    clearPosts: () => {
+        return {
+            type: types.CLEAR_POSTS,
+        };
+    },
+    removePostAsync: (post) => {
+        return {
+            type:    types.REMOVE_POST_ASYNC,
+            payload: post,
+        };
+    },
     fetchPostsAsync: () => async (dispatch, getState) => {
         dispatch({
             type: types.FETCH_POSTS_ASYNC,
@@ -25,12 +36,16 @@ export const postsActions ={
         dispatch(postsActions.fillPosts(result.data));
     },
 
-    createPostAsync: (comment) => {
-        return {
+    createPostAsync: (post) => async (dispatch) => {
+        console.log(post);
+        dispatch({
             type:    types.CREATE_POST_ASYNC,
-            payload: comment,
+            payload: post,
+        });
+        const response = await api.posts.createPostAsync(post);
+        const result = await response.json();
 
-        };
-
+        console.log(result);
+        dispatch(postsActions.fillPosts(result.data));
     },
 };

@@ -19,7 +19,6 @@ export default class Composer extends Component {
         if (!comment) {
             return null;
         }
-        console.log(comment);
         this.props.actions.createPostAsync(comment);
     };
 

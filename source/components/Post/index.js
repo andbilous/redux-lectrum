@@ -33,7 +33,6 @@ export default class Post extends Component {
             profile,
             author,
         } = this.props;
-
         const cross = this._getCross();
 
         return (
