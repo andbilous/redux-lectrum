@@ -44,7 +44,6 @@ export const postsActions ={
         const response = await api.posts.createPostAsync({ comment });
         const result = await response.json();
 
-        console.log(result);
         dispatch(postsActions.createPost(result.data));
     },
 };

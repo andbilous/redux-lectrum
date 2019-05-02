@@ -9,7 +9,6 @@ export function* createPost () {
         const response = yield apply(api, api.posts.createPostAsync);
         const { data: posts, message } = yield apply(response, response.json);
 
-        console.log(posts);
         if (response.status !==200) {
             throw new Error(message);
         }
