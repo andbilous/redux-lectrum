@@ -26,7 +26,7 @@ export const postsActions ={
             payload: post,
         };
     },
-    fetchPostsAsync: () => async (dispatch, getState) => {
+    fetchPostsAsync: () => async (dispatch) => {
         dispatch({
             type: types.FETCH_POSTS_ASYNC,
         });
@@ -44,6 +44,7 @@ export const postsActions ={
         const response = await api.posts.createPostAsync({ comment });
         const result = await response.json();
 
-        dispatch(postsActions.fillPosts(result.data));
+        console.log(result);
+        dispatch(postsActions.createPost(result.data));
     },
 };

@@ -14,6 +14,8 @@ import { Composer, Catcher, Post } from '../../components';
 import { postsActions } from '../../bus/posts/actions';
 
 const mapStateToProps = (state) => {
+    console.log(state);
+
     return {
         posts:   state.posts,
         profile: state.profile,
@@ -42,6 +44,7 @@ export default class Posts extends Component {
         const { actions, posts, profile } = this.props;
 
         const postsJSX = posts.map((post) => {
+            console.log(post);
 
             return (
                 <Catcher key = { post.get('id') }>
