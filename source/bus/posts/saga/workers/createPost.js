@@ -13,7 +13,7 @@ export function* createPost () {
             throw new Error(message);
         }
     } catch (error) {
-        yield put(uiActions.emitError(error, 'worker'));
+        yield put(uiActions.emitError(error, 'createPost worker'));
     } finally {
         yield put(uiActions.stopFetching());
     }

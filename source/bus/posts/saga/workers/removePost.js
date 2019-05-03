@@ -10,22 +10,16 @@ import {
     uiActions
 } from '../../../ui/actions';
 
-export function* worker () {
+export function* removePost () {
     try {
         yield put(uiActions.startFetching());
-        const response = yield apply(api, api.posts.fetch);
-
-        console.log(response);
-        const {
-            data: posts,
-            message,
-        } = yield apply(response, response.json);
+        const response = yield apply(api, api.posts.removePostAsync);
 
         if (response.status !== 200) {
             throw new Error(message);
         }
     } catch (error) {
-        yield put(uiActions.emitError(error, 'worker'));
+        yield put(uiActions.emitError(error, 'removePost worker'));
     } finally {
         yield put(uiActions.stopFetching());
     }

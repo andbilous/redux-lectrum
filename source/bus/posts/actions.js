@@ -20,11 +20,22 @@ export const postsActions ={
             type: types.CLEAR_POSTS,
         };
     },
-    removePostAsync: (post) => {
+    removePost: (post) => {
         return {
-            type:    types.REMOVE_POST_ASYNC,
+            type:    types.REMOVE_POST,
             payload: post,
         };
+    },
+    removePostAsync: (post) => async (dispatch) => {
+        dispatch({
+            type: types.REMOVE_POST_ASYNC,
+        });
+        const response = await api.posts.removePostAsync(post);
+
+        if (response.status===204) {
+            dispatch(postsActions.removePost(post));
+        }
+
     },
     fetchPostsAsync: () => async (dispatch) => {
         dispatch({
