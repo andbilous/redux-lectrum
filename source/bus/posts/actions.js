@@ -26,6 +26,18 @@ export const postsActions ={
             payload: post,
         };
     },
+    likePost: (likedPostData) => {
+        return {
+            type:    types.LIKE_POST,
+            payload: likedPostData,
+        };
+    },
+    unlikePost: (likedPostData) => {
+        return {
+            type:    types.UNLIKE_POST,
+            payload: likedPostData,
+        };
+    },
     removePostAsync: (post) => async (dispatch) => {
         dispatch({
             type: types.REMOVE_POST_ASYNC,
@@ -35,7 +47,18 @@ export const postsActions ={
         if (response.status===204) {
             dispatch(postsActions.removePost(post));
         }
-
+    },
+    likePostAsync: (postId) => {
+        return {
+            type:    types.LIKE_POST_ASYNC,
+            payload: postId,
+        };
+    },
+    unlikePostAsync: (postId) => {
+        return {
+            type:    types.UNLIKE_POST_ASYNC,
+            payload: postId,
+        };
     },
     fetchPostsAsync: () => async (dispatch) => {
         dispatch({
