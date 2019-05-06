@@ -13,6 +13,7 @@ import { authActions } from '../../bus/auth/actions';
 const mapStateToProps=(state) => {
     return {
         isAuthenticated: state.auth.get('isAuthenticated'),
+        isOnline:        state.ui.get('isOnline'),
         profile:         state.profile,
     };
 };
@@ -22,9 +23,6 @@ const mapDispatchToProps={
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Nav extends Component {
-    static defaultProps = {
-        isOnline: false,
-    };
 
     _getNav = () => {
         const { isAuthenticated, profile } = this.props;

@@ -58,6 +58,8 @@ export const api = {
             });
         },
         createPostAsync (post) {
+            console.log(post);
+
             return fetch(`${MAIN_URL}/feed`, {
                 method:  'POST',
                 headers: {
@@ -80,6 +82,16 @@ export const api = {
         like (postId) {
             return fetch(`${MAIN_URL}/feed/like/${postId}`, {
                 method:  'PUT',
+                headers: {
+                    Authorization: api.token,
+                },
+            });
+        },
+    },
+    users: {
+        fetch () {
+            return fetch(`${MAIN_URL}/user/all`, {
+                method:  'GET',
                 headers: {
                     Authorization: api.token,
                 },
