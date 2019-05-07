@@ -70,14 +70,15 @@ export const postsActions ={
         dispatch(postsActions.fillPosts(result.data));
     },
 
-    createPostAsync: (comment) => async (dispatch) => {
-        dispatch({
+    createPostAsync: (comment) => {
+        return {
             type:    types.CREATE_POST_ASYNC,
             payload: comment,
-        });
-        const response = await api.posts.createPostAsync({ comment });
-        const result = await response.json();
+        };
 
-        dispatch(postsActions.createPost(result.data));
+        // const response = await api.posts.createPostAsync(comment);
+        // const result = await response.json();
+
+        //  dispatch(postsActions.createPost(result.data));
     },
 };
