@@ -1,18 +1,22 @@
-import { types } from './types';
+import {
+    types
+} from './types';
 
-import { api } from '../../REST';
+import {
+    api
+} from '../../REST';
 
-export const postsActions ={
+export const postsActions = {
     fillPosts: (posts) => {
         return {
             type:    types.FILL_POSTS,
             payload: posts,
         };
     },
-    createPost: (post) => {
+    createPost: (comment) => {
         return {
             type:    types.CREATE_POST,
-            payload: post,
+            payload: comment,
         };
     },
     clearPosts: () => {
@@ -20,10 +24,10 @@ export const postsActions ={
             type: types.CLEAR_POSTS,
         };
     },
-    removePost: (post) => {
+    removePost: (postId) => {
         return {
             type:    types.REMOVE_POST,
-            payload: post,
+            payload: postId,
         };
     },
     likePost: (likedPostData) => {
@@ -38,15 +42,11 @@ export const postsActions ={
             payload: likedPostData,
         };
     },
-    removePostAsync: (post) => async (dispatch) => {
-        dispatch({
-            type: types.REMOVE_POST_ASYNC,
-        });
-        const response = await api.posts.removePostAsync(post);
-
-        if (response.status===204) {
-            dispatch(postsActions.removePost(post));
-        }
+    removePostAsync: (postId) => {
+        return {
+            type:    types.REMOVE_POST_ASYNC,
+            payload: postId,
+        };
     },
     likePostAsync: (postId) => {
         return {
@@ -75,10 +75,5 @@ export const postsActions ={
             type:    types.CREATE_POST_ASYNC,
             payload: comment,
         };
-
-        // const response = await api.posts.createPostAsync(comment);
-        // const result = await response.json();
-
-        //  dispatch(postsActions.createPost(result.data));
     },
 };

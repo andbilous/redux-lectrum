@@ -1,8 +1,14 @@
-import { socket } from '../../init/socket';
-import { uiActions } from '../ui/actions';
-import { postsActions } from '../posts/actions';
+import {
+    socket
+} from '../../init/socket';
+import {
+    uiActions
+} from '../ui/actions';
+import {
+    postsActions
+} from '../posts/actions';
 
-export const socketActions={
+export const socketActions = {
     listenConnection: () => (dispatch) => {
         socket.on('connect', () => {
             dispatch(uiActions.setOnlineState());
@@ -13,17 +19,22 @@ export const socketActions={
     },
     listenPosts: () => (dispatch, getState) => {
         socket.on('create', (event) => {
-            const { data: post } =JSON.parse(event);
+            const {
+                data: post,
+            } = JSON.parse(event);
 
             dispatch(postsActions.createPost(post));
 
             console.log('> event', JSON.parse(event));
         });
         socket.on('like', (event) => {
-            const { data, meta } =JSON.parse(event);
+            const {
+                data,
+                meta,
+            } = JSON.parse(event);
 
-            if (meta.action==='like') {
-                const liker=getState().users.find((user) => user.get('id')===data.userId)
+            if (meta.action === 'like') {
+                const liker = getState().users.find((user) => user.get('id') === data.userId)
                     .delete('avatar');
 
                 dispatch(postsActions.likePost({
@@ -37,8 +48,12 @@ export const socketActions={
             console.log('> event', JSON.parse(event));
         });
         socket.on('remove', (event) => {
-            console.log(JSON.parse(event));
-            // dispatch(postsActions.removePost())
+            const {
+                data,
+                meta,
+            } = JSON.parse(event);
+
+            dispatch(postsActions.removePost(data.post.id));
         });
     },
 };

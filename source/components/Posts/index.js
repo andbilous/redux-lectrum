@@ -34,7 +34,6 @@ export default class Posts extends Component {
         const { actions } = this.props;
 
         actions.fetchPostsAsync();
-
         actions.fetchUsersAsync();
     }
 
@@ -42,6 +41,7 @@ export default class Posts extends Component {
         const { actions, posts, profile } = this.props;
 
         const postsJSX = posts.map((post) => {
+            console.log(post);
 
             return (
                 <Catcher key = { post.get('id') }>

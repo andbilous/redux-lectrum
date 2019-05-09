@@ -9,17 +9,17 @@ import {
 import {
     uiActions
 } from '../../../ui/actions';
+import { postsActions } from '../../actions';
 
-export function* removePost () {
+export function* removePost ({ payload: postId }) {
     try {
         yield put(uiActions.startFetching());
-        const response = yield apply(api, api.posts.removePostAsync);
+        yield apply(api, api.posts.removePostAsync, [postId]);
 
-        if (response.status !== 200) {
-            throw new Error(message);
-        }
+        yield put(postsActions.removePost(postId));
+
     } catch (error) {
-        yield put(uiActions.emitError(error, 'removePost worker'));
+        yield put(uiActions.emitError(error, 'remove post worker'));
     } finally {
         yield put(uiActions.stopFetching());
     }
