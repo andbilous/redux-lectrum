@@ -2,7 +2,7 @@ import {
     put,
     apply
 } from 'redux-saga/effects';
-
+import { postsActions } from '../../actions';
 import {
     api
 } from '../../../../REST';
@@ -16,14 +16,12 @@ export function* worker () {
         const response = yield apply(api, api.posts.fetch);
 
         console.log(response);
-        const {
-            data: posts,
-            message,
-        } = yield apply(response, response.json);
+        const result = yield apply(response, response.json);
 
         if (response.status !== 200) {
-            throw new Error(message);
+            throw new Error(result.message);
         }
+        yield put(postsActions.fillPosts(result.data));
     } catch (error) {
         yield put(uiActions.emitError(error, 'worker'));
     } finally {

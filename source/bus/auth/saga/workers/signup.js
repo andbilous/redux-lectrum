@@ -31,8 +31,10 @@ export function* signup ({
             throw new Error(message);
         }
         console.log('-> profile', profile);
+        yield apply(localStorage, localStorage.setItem, ['token', profile.token]);
         yield put(profileActions.fillProfile(profile));
         yield put(authActions.authenticate());
+
     } catch (error) {
         yield put(uiActions.emitError(error, 'signup worker'));
     } finally {

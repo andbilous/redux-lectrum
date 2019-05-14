@@ -50,7 +50,9 @@ export const api = {
     },
     posts: {
         fetch () {
-            return fetch(`${MAIN_URL}/feed`, {
+            console.log(api.token);
+            
+return fetch(`${MAIN_URL}/feed`, {
                 method:  'GET',
                 headers: {
                     Authorization: api.token,

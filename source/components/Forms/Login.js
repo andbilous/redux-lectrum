@@ -17,6 +17,7 @@ import Styles from './styles.m.css';
 import {
     login
 } from '../../bus/forms/shapes';
+
 import {
     authActions
 } from '../../bus/auth/actions';
@@ -112,13 +113,13 @@ export default class LoginForm extends Component {
                                         type = 'checkbox'
                                     />
                         Запомнить меня </label> <button
-                                    className = {
+                            className = {
                                         buttonStyle
                                     }
-                            disabled = {
+                                    disabled = {
                                         isFetching
                                     }
-                            type = 'submit' > {
+                                    type = 'submit' > {
                                         buttonMessage
                                     } </button> </div> </div> </Form>
                     );
