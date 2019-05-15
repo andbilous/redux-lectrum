@@ -51,8 +51,8 @@ export const api = {
     posts: {
         fetch () {
             console.log(api.token);
-            
-return fetch(`${MAIN_URL}/feed`, {
+
+            return fetch(`${MAIN_URL}/feed`, {
                 method:  'GET',
                 headers: {
                     Authorization: api.token,
@@ -87,6 +87,27 @@ return fetch(`${MAIN_URL}/feed`, {
                 headers: {
                     Authorization: api.token,
                 },
+            });
+        },
+    },
+    profile: {
+        updateProfile (profileInfo) {
+            return fetch(`${MAIN_URL}/user`, {
+                method:  'PUT',
+                headers: {
+                    Authorization:  api.token,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(profileInfo),
+            });
+        },
+        updateAvatar (avatarFormData) {
+            return fetch(`${MAIN_URL}/image`, {
+                method:  'POST',
+                headers: {
+                    Authorization: api.token,
+                },
+                body: avatarFormData,
             });
         },
     },

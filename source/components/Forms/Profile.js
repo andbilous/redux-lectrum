@@ -14,6 +14,7 @@ import { book } from '../../navigation/book';
 // Components
 import { Input } from '../../components';
 // import { authActions } from '../../bus/auth/actions';
+import { profileActions } from '../../bus/profile/actions';
 
 const mapStateToProps = (state) => {
     return {
@@ -22,13 +23,11 @@ const mapStateToProps = (state) => {
     };
 };
 
-// const mapDispatchToProps = {
-//     loginAsync: authActions.loginAsync,
-// };
+const mapDispatchToProps=profileActions;
 
 @connect(
     mapStateToProps,
-    //  mapDispatchToProps
+    mapDispatchToProps
 )
 export default class Profile extends Component {
     static defaultProps = {

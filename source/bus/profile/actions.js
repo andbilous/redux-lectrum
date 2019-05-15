@@ -7,9 +7,27 @@ export const profileActions={
             payload: profile,
         };
     },
+    updateAvatar: (newAvatarUrl) => {
+        return {
+            type:    types.UPDATE_AVATAR,
+            payload: newAvatarUrl,
+        };
+    },
     clearProfile: () => {
         return {
             type: types.CLEAR_PROFILE,
+        };
+    },
+    updateNameAsync: (newName) => {
+        return {
+            type:    types.UPDATE_NAME_ASYNC,
+            payload: newName,
+        };
+    },
+    updateAvatarAsync: (newAvatar) => {
+        return {
+            type:    types.UPDATE_AVATAR_ASYNC,
+            payload: newAvatar,
         };
     },
 };
