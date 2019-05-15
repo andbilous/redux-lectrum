@@ -14,7 +14,7 @@ export function* watchUpdateAvatar () {
 export function* watchUpdateName () {
     yield takeEvery(types.UPDATE_NAME_ASYNC, updateName);
 }
-export function* watchAuth () {
+export function* watchProfile () {
 
     yield all([call(watchSignup), call(watchUpdateName), call(watchUpdateAvatar)]);
 }

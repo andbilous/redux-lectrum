@@ -1,7 +1,4 @@
-import {
-    put,
-    apply
-} from 'redux-saga/effects';
+import { put, apply } from 'redux-saga/effects';
 import { postsActions } from '../../actions';
 import {
     api

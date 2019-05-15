@@ -31,7 +31,7 @@ export function* watchLikePost () {
 export function* watchUnLikePost () {
     yield takeEvery(types.UNLIKE_POST_ASYNC, unlikePost);
 }
-export function* watchDomain () {
+export function* watchPosts () {
     yield all([call(watchWorker), call(watchCreatePost), call(watchRemovePost), call(watchLikePost),
         call(watchUnLikePost)
     ]);
