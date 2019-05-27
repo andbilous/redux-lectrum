@@ -13,11 +13,9 @@ export const profileActions={
             payload: newAvatarUrl,
         };
     },
-    clearProfile: () => {
-        return {
-            type: types.CLEAR_PROFILE,
-        };
-    },
+    clearProfile: () => ({
+        type: types.CLEAR_PROFILE,
+    }),
     updateNameAsync: (newName) => {
         return {
             type:    types.UPDATE_NAME_ASYNC,
@@ -28,6 +26,12 @@ export const profileActions={
         return {
             type:    types.UPDATE_AVATAR_ASYNC,
             payload: newAvatar,
+        };
+    },
+    updatePasswordAsync: (newPassword) => {
+        return {
+            type:    types.UPDATE_PASSWORD_ASYNC,
+            payload: newPassword,
         };
     },
 };

@@ -13,7 +13,6 @@ import { book } from '../../navigation/book';
 
 // Components
 import { Input } from '../../components';
-// import { authActions } from '../../bus/auth/actions';
 import { profileActions } from '../../bus/profile/actions';
 
 const mapStateToProps = (state) => {

@@ -9,15 +9,15 @@ import {
 } from '../types';
 
 import {
-    worker,
+    fetchPosts,
     createPost,
     removePost,
     likePost,
     unlikePost
 } from './workers';
 
-export function* watchWorker () {
-    yield takeEvery(types.FILL_POSTS, worker);
+export function* watchfetchPosts () {
+    yield takeEvery(types.FILL_POSTS, fetchPosts);
 }
 export function* watchCreatePost () {
     yield takeEvery(types.CREATE_POST_ASYNC, createPost);
@@ -32,7 +32,7 @@ export function* watchUnLikePost () {
     yield takeEvery(types.UNLIKE_POST_ASYNC, unlikePost);
 }
 export function* watchPosts () {
-    yield all([call(watchWorker), call(watchCreatePost), call(watchRemovePost), call(watchLikePost),
+    yield all([call(watchfetchPosts), call(watchCreatePost), call(watchRemovePost), call(watchLikePost),
         call(watchUnLikePost)
     ]);
 }

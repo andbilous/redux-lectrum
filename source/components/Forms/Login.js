@@ -2,14 +2,8 @@
 import React, {
     Component
 } from 'react';
-import {
-    connect
-} from 'react-redux';
-import {
-    Formik,
-    Form,
-    Field
-} from 'formik';
+import { connect } from 'react-redux';
+import { Formik, Form, Field } from 'formik';
 import cx from 'classnames';
 
 // Instruments
@@ -21,6 +15,7 @@ import {
 import {
     authActions
 } from '../../bus/auth/actions';
+
 const mapStateToProps = (state) => {
     return {
         isFetching: state.ui.get('isFetching'),

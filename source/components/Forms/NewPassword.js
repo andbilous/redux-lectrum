@@ -1,15 +1,28 @@
 // Core
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Formik, Form, Field } from 'formik';
+import { Form } from 'react-redux-form';
+import { Input } from '../../components';
 import cx from 'classnames';
 
 // Instruments
 import Styles from './styles.m.css';
 import { newPassword } from '../../bus/forms/shapes';
 import { book } from '../../navigation/book';
+import { profileActions } from '../../bus/profile/actions';
 
-export default class NewPassword extends Component {
+const mapStateToProps = (state) => {
+    return {
+        isFetching: state.ui.get('isFetching'),
+        profile:    state.profile,
+    };
+};
+const mapDispatchToProps=profileActions;
+
+@connect(mapStateToProps, mapDispatchToProps)
+
+export default class NewPasswordForm extends Component {
     static defaultProps = {
         // State
         isFetching: false,
@@ -28,7 +41,7 @@ export default class NewPassword extends Component {
         const { isFetching } = this.props;
 
         return (
-            <Formik
+            <Form
                 initialValues = { newPassword.shape }
                 render = { (props) => {
                     const { isValid, touched, errors } = props;
@@ -49,19 +62,21 @@ export default class NewPassword extends Component {
                     const buttonMessage = isFetching ? 'Загрузка...' : 'Сменить пароль';
 
                     return (
-                        <Form className = { Styles.form }>
+                        <Form className = { Styles.form } model = 'forms.user.password'>
                             <div className = { newPasswordFormWrapperStyles }>
                                 <div>
-                                    <Field
+                                    <Input
                                         className = { oldPasswordStyle }
                                         disabled = { isFetching }
+                                        model = 'forms.user.password.oldPassword'
                                         name = 'oldPassword'
                                         placeholder = 'Старый пароль'
                                         type = 'password'
                                     />
-                                    <Field
+                                    <Input
                                         className = { newPasswordStyle }
                                         disabled = { isFetching }
+                                        model = 'forms.user.password.newPassword'
                                         name = 'newPassword'
                                         placeholder = 'Новый пароль'
                                         type = 'password'
@@ -70,7 +85,7 @@ export default class NewPassword extends Component {
                                         className = { buttonStyle }
                                         disabled = { isFetching }
                                         type = 'submit'
-                                        onClick = { this._changePassword }>
+                                        onClick = { this._submitPassword }>
                                         {buttonMessage}
                                     </button>
                                 </div>

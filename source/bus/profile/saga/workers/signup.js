@@ -13,7 +13,6 @@ export function* signup ({ payload: userInfo }) {
         if (response.status !==200) {
             throw new Error(message);
         }
-        console.log('-> profile', profile);
         yield put(authActions.authenticate());
     } catch (error) {
         yield put(uiActions.emitError(error, 'signup worker'));

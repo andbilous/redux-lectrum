@@ -7,7 +7,7 @@ import {
     uiActions
 } from '../../../ui/actions';
 
-export function* worker () {
+export function* fetchPosts () {
     try {
         yield put(uiActions.startFetching());
         const response = yield apply(api, api.posts.fetch);
